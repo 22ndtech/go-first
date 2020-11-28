@@ -1,0 +1,1 @@
+docker build -f Dockerfile --target debug -t 22ndtech/go-first:debug .

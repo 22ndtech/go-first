@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-first
+  labels:
+    app: go-first
+  namespace: user-testuser1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-first
+  template:
+    metadata:
+      labels:
+        app: go-first
+    spec:
+      containers:
+        - name: go-first
+          image: jeff22ndtech/go-first:debug
+          ports:
+            - containerPort: 2345
+              protocol: TCP
+            - containerPort: 9090
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "128Mi"
+            requests:
+              cpu: "250m"
+              memory: "64Mi"

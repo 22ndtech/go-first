@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: go-first
+  name: go-first
+spec:
+  containers:
+    - image: jeff22ndtech/go-first:debug
+      name: go-first
+      ports:
+        - containerPort: 2345
+          protocol: TCP
+        - containerPort: 9090
+          protocol: TCP
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "128Mi"
+        requests:
+          cpu: "250m"
+          memory: "64Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-first
+spec:
+  selector:
+    app: go-first
+  ports:
+  - port: 2345
+    targetPort: 2345
+    name: go-first-debug-port
+  - port: 9091
+    targetPort: 9090
+    name: go-first-api-port

@@ -1,0 +1,1 @@
+docker build -f Dockerfile --target prod -t 22ndtech/go-first .
