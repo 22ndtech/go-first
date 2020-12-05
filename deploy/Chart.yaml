@@ -26,9 +26,6 @@ spec:
         - name: http
           containerPort: 9091
           protocol: TCP
-        command:
-        - --port=9091
-        - --level=info
         resources:
           limits:
             cpu: "500m"
