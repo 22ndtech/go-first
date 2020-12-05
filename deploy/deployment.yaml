@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-first
+spec:
+  minReadySeconds: 3
+  revisionHistoryLimit: 5
+  progressDeadlineSeconds: 60
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: go-first
+  template:
+    metadata:
+      labels:
+        app: go-first
+    spec:
+      containers:
+      - name: go-first
+        image: 22ndtech/go-first:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 9091
+          protocol: TCP
+        command:
+        - ./podinfo
+        - --port=9091
+        - --level=info
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "128Mi"
+          requests:
+            cpu: "250m"
+            memory: "64Mi"
