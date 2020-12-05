@@ -27,7 +27,6 @@ spec:
           containerPort: 9091
           protocol: TCP
         command:
-        - ./podinfo
         - --port=9091
         - --level=info
         resources:
